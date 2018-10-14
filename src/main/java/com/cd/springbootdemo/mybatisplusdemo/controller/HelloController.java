@@ -1,10 +1,14 @@
 package com.cd.springbootdemo.mybatisplusdemo.controller;
 
 import com.cd.springbootdemo.mybatisplusdemo.annotation.ParamCheck;
+import com.cd.springbootdemo.mybatisplusdemo.config.ParamModel;
+import com.cd.springbootdemo.mybatisplusdemo.dto.UserDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Slf4j
 public class HelloController {
 
 
@@ -18,5 +22,12 @@ public class HelloController {
     public String sayHello (@ParamCheck String name) {
 
         return "hello";
+    }
+
+    @GetMapping("welcome")
+    public String welcome (@ParamModel UserDTO userDTO) {
+
+        log.info("userDTO:{}", userDTO);
+        return userDTO.getUserName();
     }
 }
